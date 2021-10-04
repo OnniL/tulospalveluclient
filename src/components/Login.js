@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Form} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
+import '../Styles.css';
 
 const Login = () => {
 
@@ -44,91 +45,84 @@ const Login = () => {
     setValidated(true);
   };
 
+  /**
+   * Kirjautuu ryhmän tunnuksilla sisään.
+   */
+  function setGroup(json) {
+    localStorage.setItem('group', json.rows[0].nimi);
+    console.log(localStorage.getItem('group'));
+  }
 
-
-/**
- * Kirjautuu ryhmän tunnuksilla sisään.
- */
-function setGroup(json) {
-  localStorage.setItem('group', json.rows[0].nimi);
-  console.log(localStorage.getItem('group'));
-}
-
-/**
- * Luo uuden ryhmän.
- */
-function newGroup() {
-  let group = document.getElementById('group').value;
-  let password = document.getElementById('password').value;
-  let body;
-  if (group.length === 0 || password.length === 0) {
-    alert('Täytä molemmat kentät!');
-  } else if (textInputCheck(group) === false) {
-    alert('Ryhmän nimessä saa olla ainoastaan kirjaimia!');
-  } else {
-    let pwCheck = window.prompt('Vahvista salasana:');
-    if (password !== pwCheck) {
-      alert('Salasana ei täsmää!');
+  /**
+   * Luo uuden ryhmän.
+   */
+  function newGroup() {
+    let group = document.getElementById('group').value;
+    let password = document.getElementById('password').value;
+    let body;
+    if (group.length === 0 || password.length === 0) {
+      alert('Täytä molemmat kentät!');
+    } else if (textInputCheck(group) === false) {
+      alert('Ryhmän nimessä saa olla ainoastaan kirjaimia!');
     } else {
-      body = {'nimi': group, 'salasana': password};
-      let xmlhttp = new XMLHttpRequest();
-      xmlhttp.open('POST',
-          'https://rocky-cliffs-72708.herokuapp.com/api/newgroup', true);
-      xmlhttp.setRequestHeader('Content-Type', 'application/json');
-      xmlhttp.send(JSON.stringify(body));
-      localStorage.setItem('group', body.nimi);
-      console.log(localStorage.getItem('group'));
+      let pwCheck = window.prompt('Vahvista salasana:');
+      if (password !== pwCheck) {
+        alert('Salasana ei täsmää!');
+      } else {
+        body = {'nimi': group, 'salasana': password};
+        let xmlhttp = new XMLHttpRequest();
+        xmlhttp.open('POST',
+            'https://rocky-cliffs-72708.herokuapp.com/api/newgroup', true);
+        xmlhttp.setRequestHeader('Content-Type', 'application/json');
+        xmlhttp.send(JSON.stringify(body));
+        localStorage.setItem('group', body.nimi);
+        console.log(localStorage.getItem('group'));
 
+      }
     }
   }
-}
 
-/**
- * Tarkastaa, onko syöte kirjoitettu oikein.
- * @param inputtxt
- * @returns {boolean}
- */
-function textInputCheck(inputtxt) {
-  let inputType = /^[A-Za-z0-9äöåÄÖÅ]+$/;
-  if (inputtxt.match(inputType)) {
-    return true;
-  } else {
-    return false;
+  /**
+   * Tarkastaa, onko syöte kirjoitettu oikein.
+   * @param inputtxt
+   * @returns {boolean}
+   */
+  function textInputCheck(inputtxt) {
+    let inputType = /^[A-Za-z0-9äöåÄÖÅ]+$/;
+    if (inputtxt.match(inputType)) {
+      return true;
+    } else {
+      return false;
+    }
   }
-}
 
-const handleEmailChange = (event) => {
-  console.log(event.target.value);
-  setNewEmail(event.target.value);
-};
+  const handleEmailChange = (event) => {
+    console.log(event.target.value);
+    setNewEmail(event.target.value);
+  };
 
-const handlePasswordChange = (event) => {
-  console.log(event.target.value);
-  setNewPassword(event.target.value);
-};
+  const handlePasswordChange = (event) => {
+    console.log(event.target.value);
+    setNewPassword(event.target.value);
+  };
 
-return (
-    <Form noValidate validated={validated} onSubmit={getGroup}>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address:</Form.Label>
-        <Form.Control type="text" value={newEmail} onChange={handleEmailChange}
-                      required/>
-        <Form.Control.Feedback type="invalid">Please enter a valid
-          email!</Form.Control.Feedback>
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password:</Form.Label>
-        <Form.Control type="password" value={newPassword}
-                      onChange={handlePasswordChange} required/>
-        <Form.Control.Feedback type="invalid">Please enter a valid
-          password!</Form.Control.Feedback>
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
-)
+  return (
+        <Form noValidate validated={validated} onSubmit={getGroup}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Control type="text" value={newEmail}
+                          onChange={handleEmailChange} placeholder="Nimi"
+                          required/>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Control type="password" value={newPassword}
+                          onChange={handlePasswordChange} placeholder="Salasana"
+                          required/>
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+  );
 };
 
 export default Login;

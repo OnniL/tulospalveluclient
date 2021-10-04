@@ -15,23 +15,8 @@ const App = () => {
 
   return (
       <div className="container">
-        {/*  */}
-        <Router>
-          <div>
-            <Link style={padding} to="/">login</Link>
-            <text>{localStorage.getItem("myUser")}</text>
-          </div>
-
-          <Switch>
-            <Route path="/">
-              <Login />
-            </Route>
-          </Switch>
-
-          <div>
-            <i>Esimerkkivalikko</i>
-          </div>
-        </Router>
+        <h1>Tulospalvelu</h1>
+        <Login />
       </div>
   )
 }
