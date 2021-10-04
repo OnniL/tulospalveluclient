@@ -12,14 +12,6 @@ const App = () => {
   const padding = {
     padding: 5
   }
-  useEffect(() => {
-    axios
-        .get('http://localhost:3001/events')
-        .then(response => {
-          console.log('promise fulfilled!!!')
-          setEvents(response.data)
-        })
-  }, [])
 
   return (
       <div className="container">
@@ -37,7 +29,7 @@ const App = () => {
           </Switch>
 
           <div>
-            <i>Esimerkkivalikko </i>
+            <i>Esimerkkivalikko</i>
           </div>
         </Router>
       </div>
