@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Form, FormText} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
+import { useHistory } from "react-router-dom";
 import '../Styles.css';
 
 const Login = () => {
@@ -44,6 +45,13 @@ const Login = () => {
     xmlhttp.send();
     setValidated(true);
   };
+
+  const history = useHistory();
+
+  const routeChange = () =>{
+    let path = './components/Menu';
+    history.push(path);
+  }
 
   /**
    * Kirjautuu ryhmän tunnuksilla sisään.
@@ -106,8 +114,12 @@ const Login = () => {
     setNewPassword(event.target.value);
   };
 
+  const handleRoute = () =>{
+    useHistory.push("./components/Menu");
+  }
+
   return (
-        <Form noValidate validated={validated} onSubmit={getGroup}>
+        <Form noValidate validated={validated} onSubmit={handleRoute}>
           <h2>Kirjaudu sisään ryhmän tunnuksilla</h2>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control type="text" value={newEmail}
@@ -119,7 +131,7 @@ const Login = () => {
                           onChange={handlePasswordChange} placeholder="Salasana"
                           required/>
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" >
             Submit
           </Button>
         </Form>
