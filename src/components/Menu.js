@@ -2,10 +2,27 @@ import {Form, FormText} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import '../Styles.css';
 import React from 'react';
+import {useHistory} from 'react-router-dom';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 const Menu = () => {
+  const history = useHistory();
+  const handleSettings = () => {
+    history.push('/settings')
+  }
+
+
   return (
-      <h2>Testiä</h2>
+      <div>
+        {/* <Button onClick={handleSettings}>Asetuksiin</Button>*/}
+        <h1>Ryhmä:</h1>
+        <ButtonGroup Vertical className="buttonGroup">
+          <Button>Uusi Peli</Button>
+          <Button>Statistiikka</Button>
+          <Button onClick={handleSettings}>Asetukset</Button>
+          <Button>Kirjaudu Ulos</Button>
+        </ButtonGroup>
+      </div>
   );
 };
 export default Menu;

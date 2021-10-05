@@ -1,4 +1,4 @@
-html, body {
+body {
     background-image: url('images/taustakuva.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -10,6 +10,7 @@ html, body {
     padding: 0;
 
 }
+
 
 p {
     text-align: center;
@@ -357,7 +358,7 @@ ul {
 }
 
 h2 {
-    margin: 0 0 15px;
+    margin-top: 2em;
     text-align: center;
     font-family: "Courier New";
 }
@@ -426,7 +427,16 @@ Form{
     display: flex;
     justify-content: center;
     margin: 0 0 0.5em 0;
-
 }
+
+.buttonGroup{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
 
 
