@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Form, FormText} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
-import { useHistory } from "react-router-dom";
+import {useHistory} from 'react-router-dom';
 import '../Styles.css';
 
 const Login = () => {
@@ -15,6 +15,7 @@ const Login = () => {
   const [validated, setValidated] = useState(false);
   let json;
   let xmlhttp = new XMLHttpRequest();
+  let history = useHistory();
 
   /**
    * Hankkii ryhmän tunnukset tietokannasta.
@@ -46,12 +47,6 @@ const Login = () => {
     setValidated(true);
   };
 
-  const history = useHistory();
-
-  const routeChange = () =>{
-    let path = './components/Menu';
-    history.push(path);
-  }
 
   /**
    * Kirjautuu ryhmän tunnuksilla sisään.
@@ -115,7 +110,7 @@ const Login = () => {
   };
 
   const handleRoute = () =>{
-    useHistory.push("./components/Menu");
+    history.push("/menu");
   }
 
   return (
@@ -131,7 +126,7 @@ const Login = () => {
                           onChange={handlePasswordChange} placeholder="Salasana"
                           required/>
           </Form.Group>
-          <Button variant="primary" type="submit" >
+          <Button variant="primary" type="submit">
             Submit
           </Button>
         </Form>
