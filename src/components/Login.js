@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Form} from 'react-bootstrap';
+import {Form, FormText} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import '../Styles.css';
 
@@ -108,6 +108,7 @@ const Login = () => {
 
   return (
         <Form noValidate validated={validated} onSubmit={getGroup}>
+          <h2>Kirjaudu sisään ryhmän tunnuksilla</h2>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control type="text" value={newEmail}
                           onChange={handleEmailChange} placeholder="Nimi"
