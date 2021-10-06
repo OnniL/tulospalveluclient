@@ -11,14 +11,18 @@ const NewGame = () => {
     history.push('/menu')
   }
 
+  const handleMolkky = () => {
+    history.push('/players')
+  }
+
 
   return (
       <div>
         <h1>Valitse Peli</h1>
         <ButtonGroup Vertical className="buttonGroup">
-          <Button>Mölkky</Button>
-          <Button>Ristiseiska*</Button>
-          <Button onClick={handleSettings}>Takaisin</Button>
+          <Button size="lg" onClick={handleMolkky}>Mölkky</Button>
+          <Button size="lg">Ristiseiska*</Button>
+          <Button size="lg" onClick={handleSettings}>Takaisin</Button>
         </ButtonGroup>
       </div>
   );
