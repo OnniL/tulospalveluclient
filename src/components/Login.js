@@ -135,7 +135,7 @@ const Login = () => {
                           required/>
           </Form.Group>
 
-          <Button size="me" variant="primary" type="submit" to="/menu" >
+          <Button size="me" type="submit" to="/menu" >
             Kirjaudu
           </Button>
         </Form>

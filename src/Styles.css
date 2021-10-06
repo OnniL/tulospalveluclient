@@ -82,16 +82,7 @@ h1 {
 
 
 
-#savedPlayerTd {
-    width: 50%;
-    min-width: 80px;
-    vertical-align: middle;
-}
 
-#statistiikkaOtsikko {
-    font-size: 1.8em;
-    padding: 1em 1em 0 1em;
-}
 
 Table {
     display: flex;
@@ -104,105 +95,9 @@ Table {
 }
 tbody {
     display: flex;
-}
-#pelaajatOtsikko {
-    padding: 0.5em;
-    background-color: rgba(135, 135, 135, 0.7);
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    flex-direction: column;
 }
 
-
-
-
-#newGame {
-    margin: auto;
-    display: block;
-    height: 165px;
-    width: 345px;
-    background-color: transparent;
-    background-image: url('images/button.png');
-    background-repeat: no-repeat;
-    border: none;
-    font-size: 3.4em;
-    transform: scale(0.7);
-    font-family: "Courier New";
-
-}
-
-#statisticTakaisin {
-    margin: auto;
-    display: block;
-    height: 165px;
-    width: 345px;
-    background-color: transparent;
-    background-image: url('images/button.png');
-    background-repeat: no-repeat;
-    border: none;
-    font-size: 40px;
-    transform: scale(0.6);
-    font-family: "Courier New";
-}
-
-#statistic {
-    margin: auto;
-    display: block;
-    height: 165px;
-    width: 345px;
-    background-color: transparent;
-    background-image: url('images/button.png');
-    background-repeat: no-repeat;
-    border: none;
-    font-size: 40px;
-    transform: scale(0.7);
-    font-family: "Courier New";
-}
-
-#ryhmanNimi {
-    font-size: 2em;
-}
-
-#settings {
-    margin: auto;
-    display: block;
-    height: 165px;
-    width: 345px;
-    background-color: transparent;
-    background-image: url('images/button.png');
-    background-repeat: no-repeat;
-    border: none;
-    font-size: 40px;
-    transform: scale(0.7);
-    font-family: "Courier New";
-}
-#logout {
-    margin: auto;
-    display: block;
-    height: 165px;
-    width: 345px;
-    background-color: transparent;
-    background-image: url('images/button.png');
-    background-repeat: no-repeat;
-    border: none;
-    font-size: 2.7em;
-    transform: scale(0.7);
-    font-family: "Courier New";
-}
-#back {
-    margin: auto;
-    display: block;
-    height: 165px;
-    width: 345px;
-    background-color: transparent;
-    background-image: url('images/button.png');
-    background-repeat: no-repeat;
-    border: none;
-    font-size: 40px;
-    transform: scale(0.7);
-    font-family: "Courier New";
-}
-sup{
-    font-size: 0.35em;
-}
 a {
     display: inline-block;
     position: relative;
@@ -216,9 +111,6 @@ ul {
     list-style-type: none;
 }
 
-#peliOhje{
-    transform: scale(0.6);
-}
 .textfield {
     transform: scale(0.2);
     text-align: center;
@@ -243,103 +135,6 @@ ul {
     text-align: center;
     grid-template-columns: min-content 100px;
 }
-
-.peliTitle {
-    margin: 1.5em 0 1em 0;
-    transform: scale(2);
-}
-
-#napit {
-    margin-top: 1em;
-    text-align: center;
-}
-#napitt {
-    margin-top: 5em;
-    text-align: center;
-
-}
-
-
-#lopetaNappi {
-    display: block;
-    height: 165px;
-    width: 345px;
-    background-color: transparent;
-    background-image: url('images/button.png');
-    background-repeat: no-repeat;
-    border: none;
-    font-size: 50px;
-    transform: scale(0.95);
-    font-family: "Courier New";
-}
-
-#tallennaNappi {
-    display: block;
-    height: 165px;
-    width: 345px;
-    background-color: transparent;
-    background-image: url('images/button.png');
-    background-repeat: no-repeat;
-    border: none;
-    font-size: 50px;
-    transform: scale(0.95);
-    font-family: "Courier New";
-    color: black;
-}
-
-#lightNappi {
-    display: block;
-    height: 165px;
-    min-width: 345px;
-    background-color: transparent;
-    background-image: url('images/button.png');
-    background-repeat: no-repeat;
-    border: none;
-    font-size: 50px;
-    transform: scale(0.9);
-    font-family: "Courier New";
-}
-
-#darkNappi {
-    display: block;
-    height: 165px;
-    min-width: 345px;
-    background-color: transparent;
-    background-image: url('images/button.png');
-    background-repeat: no-repeat;
-    border: none;
-    font-size: 50px;
-    transform: scale(0.9);
-    font-family: "Courier New";
-}
-
-#settingsToMenu {
-
-    height: 165px;
-    width: 345px;
-    background-color: transparent;
-    background-image: url('images/button.png');
-    background-repeat: no-repeat;
-    border: none;
-    font-size: 50px;
-    transform: scale(0.5);
-    font-family: "Courier New";
-    text-align: center;
-
-}#playersToMenu {
-
-     height: 165px;
-     width: 345px;
-     background-color: transparent;
-     background-image: url('images/button.png');
-     background-repeat: no-repeat;
-     border: none;
-     font-size: 50px;
-     transform: scale(0.5);
-     font-family: "Courier New";
-     text-align: center;
-
- }
 
 
 .login-form {
@@ -370,14 +165,6 @@ h3 {
     border-radius: 2px;
 }
 
-.btn {
-    font-weight: bold;
-    min-height: 2.5em;
-    border-radius: 2px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 #pelaajatOtsikko{
     margin-bottom: 0;
@@ -386,19 +173,27 @@ h3 {
 Button{
     height: 165px;
     width: 345px;
-    background-color: transparent;
+    color: black !important;
+    background-color: transparent !important;
     background-image: url('images/button.png');
     background-repeat: no-repeat;
-    border: none;
+    border: none !important;
     font-size: 50px;
-    font-family: "Courier New";
+    font-family: "Courier New" !important;
+    font-weight: bold;
+    min-height: 2.5em;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: none !important;
 }
 
 Form{
-    margin: 5em 3em 5em 3em;
+    margin: 1em 0;
     background: #f7f7f7;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-    padding: 30px;
+    padding: 1em;
     border-radius: 1.5em;
     display: flex;
     justify-content: center;
@@ -409,9 +204,11 @@ Form{
 }
 
 .form-control {
-    border-radius: 1em;
+    border-radius: 1em !important;
     text-align: center;
     font-family: "Courier New";
+    max-width: 8em;
+    font-size: 0.7em !important;
 }
 
 #formBasicEmail{
@@ -485,6 +282,12 @@ Row {
     width: 8em;
     font-size: 1.3em;
     background-size: 8em;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 

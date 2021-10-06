@@ -1,4 +1,4 @@
-import {Form, FormText} from 'react-bootstrap';
+import {Container, Form, FormText} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import '../Styles.css';
 import React from 'react';
@@ -25,7 +25,7 @@ const Menu = () => {
 
 
   return (
-      <div>
+      <Container className="my-auto">
         <h1>Ryhmä: {localStorage.getItem('group')}</h1>
         <ButtonGroup Vertical className="buttonGroup">
 
@@ -36,7 +36,7 @@ const Menu = () => {
 
 
         </ButtonGroup>
-      </div>
+      </Container>
   );
 };
 export default Menu;

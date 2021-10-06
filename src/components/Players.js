@@ -1,4 +1,4 @@
-import {Col, Form, FormText, Row} from 'react-bootstrap';
+import {Col, Container, Form, FormText, Row} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import '../Styles.css';
 import React, {useState} from 'react';
@@ -64,10 +64,10 @@ const Players = () => {
   };
 
   return (
-      <div>
+      <Container>
         <h2>Valitse pelaajat</h2>
         <Form noValidate validated={validated} onSubmit={addNewPlayer}>
-          <Row className="mb-4">
+          <Row className="align-items-center">
             <Col xs="auto">
               <Form.Control type="text" value={newPlayer}
                             onChange={handlePlayerChange}>
@@ -79,7 +79,7 @@ const Players = () => {
           </Row>
         </Form>
 
-      </div>
+      </Container>
   );
 };
 export default Players;
