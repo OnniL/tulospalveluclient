@@ -35,7 +35,7 @@ const Statistics = () => {
           </tbody>
         </Table>
           <div className="backToMenu">
-          <Button onClick={handleMenu}>Takaisin</Button>
+          <Button onClick={handleMenu} size="lg">Takaisin</Button>
           </div>
         </div>
     );

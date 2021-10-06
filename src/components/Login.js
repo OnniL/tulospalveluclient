@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
 import {Form, FormText} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
-
 import {useHistory} from 'react-router-dom';
-
 import '../Styles.css';
 
 const Login = () => {
@@ -37,14 +35,20 @@ const Login = () => {
     };
 
     xmlhttp.onreadystatechange = function() {
-      if (xmlhttp.readyState === 4 && xmlhttp.status === 202) {
+      if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+        console.log('testi')
         json = JSON.parse(xmlhttp.responseText);
         console.log(json);
+        if (json.numOfRows > 0){ // something found
+          setGroup(json);
+          handleRoute();
+        }
+        else {
+          alert("Ryhmää ei löytynyt!");
+        }
       }
     };
-    xmlhttp.open('GET',
-        'https://rocky-cliffs-72708.herokuapp.com/api/login?group=' + newEmail +
-        '&password=' + newPassword, true);
+    xmlhttp.open('GET', 'https://rocky-cliffs-72708.herokuapp.com/api/login?group=' + newEmail + '&password=' + newPassword, true);
     xmlhttp.send();
     setValidated(true);
   };
@@ -115,11 +119,10 @@ const Login = () => {
     history.push("/menu");
   }
 
-
   return (
       <div>
       <h1>Tulospalvelu</h1>
-        <Form noValidate validated={validated} onSubmit={handleRoute}>
+        <Form noValidate validated={validated} onSubmit={getGroup}>
           <h2>Kirjaudu sisään ryhmän tunnuksilla</h2>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control type="text" value={newEmail}
@@ -132,8 +135,8 @@ const Login = () => {
                           required/>
           </Form.Group>
 
-          <Button variant="primary" type="submit" to="/menu" >
-            Submit
+          <Button size="me" variant="primary" type="submit" to="/menu" >
+            Kirjaudu
           </Button>
         </Form>
       </div>

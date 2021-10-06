@@ -26,13 +26,15 @@ const Menu = () => {
 
   return (
       <div>
-        {/* <Button onClick={handleSettings}>Asetuksiin</Button>*/}
-        <h1>Ryhmä:</h1>
+        <h1>Ryhmä: {localStorage.getItem('group')}</h1>
         <ButtonGroup Vertical className="buttonGroup">
-          <Button onClick={handleNewGame}>Uusi Peli</Button>
-          <Button onClick={handleStatistics}>Statistiikka</Button>
-          <Button onClick={handleSettings}>Asetukset</Button>
-          <Button onClick={handleLogin}>Kirjaudu Ulos</Button>
+
+          <Button onClick={handleNewGame} size="lg">Uusi Peli</Button>
+          <Button onClick={handleStatistics} size="lg">Statistiikka</Button>
+          <Button onClick={handleSettings} size="lg">Asetukset</Button>
+          <Button onClick={handleLogin} size="lg">Kirjaudu Ulos</Button>
+
+
         </ButtonGroup>
       </div>
   );
