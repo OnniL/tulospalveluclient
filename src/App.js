@@ -12,6 +12,7 @@ import NewGame from './components/NewGame'
 import Statistics from './components/Statistics'
 
 import Players from './components/Players'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
 
 const App = () => {
