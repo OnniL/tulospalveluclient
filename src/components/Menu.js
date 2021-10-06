@@ -11,13 +11,17 @@ const Menu = () => {
     history.push('/settings')
   }
 
+  const handleNewGame = () => {
+    history.push('/newgame')
+  }
+
 
   return (
       <div>
         {/* <Button onClick={handleSettings}>Asetuksiin</Button>*/}
         <h1>Ryhmä:</h1>
         <ButtonGroup Vertical className="buttonGroup">
-          <Button>Uusi Peli</Button>
+          <Button onClick={handleNewGame}>Uusi Peli</Button>
           <Button>Statistiikka</Button>
           <Button onClick={handleSettings}>Asetukset</Button>
           <Button>Kirjaudu Ulos</Button>
