@@ -44,7 +44,23 @@ const Players = () => {
   };
 
   const addNewPlayer = () => {
-
+    let player = newPlayer;
+    let group = localStorage.getItem("group");
+    let body;
+    if(player === null || player === ""){
+      alert('Kirjoita pelaajan nimi!');
+    }
+    else {
+      body = { "pelaajan_nimi": player, "ryhman_nimi": group};
+      console.log(body);
+      let xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("POST", "https://rocky-cliffs-72708.herokuapp.com/api/newplayer", true);
+      xmlhttp.setRequestHeader("Content-Type", "application/json");
+      xmlhttp.send(JSON.stringify(body));
+      setTimeout(function(){
+        getPlayers();
+      }, 1000);
+    }
   };
 
   return (
