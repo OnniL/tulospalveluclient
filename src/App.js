@@ -8,6 +8,7 @@ import Login from './components/Login'
 import Menu from './components/Menu'
 import Settings from './components/Settings'
 import NewGame from './components/NewGame'
+import Statistics from './components/Statistics'
 import axios from 'axios'
 
 const App = () => {
@@ -24,7 +25,7 @@ const App = () => {
         <Route path="/menu" component={Menu}/>
         <Route path="/settings" component={Settings}/>
         <Route path="/newgame" component={NewGame}/>
-
+        <Route path="/statistics" component={Statistics}/>
       </div>
   )
 }

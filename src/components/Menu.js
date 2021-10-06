@@ -15,6 +15,14 @@ const Menu = () => {
     history.push('/newgame')
   }
 
+  const handleLogin = () => {
+    history.push('/login')
+  }
+
+  const handleStatistics = () => {
+    history.push('/statistics')
+  }
+
 
   return (
       <div>
@@ -22,9 +30,9 @@ const Menu = () => {
         <h1>Ryhmä:</h1>
         <ButtonGroup Vertical className="buttonGroup">
           <Button onClick={handleNewGame}>Uusi Peli</Button>
-          <Button>Statistiikka</Button>
+          <Button onClick={handleStatistics}>Statistiikka</Button>
           <Button onClick={handleSettings}>Asetukset</Button>
-          <Button>Kirjaudu Ulos</Button>
+          <Button onClick={handleLogin}>Kirjaudu Ulos</Button>
         </ButtonGroup>
       </div>
   );
