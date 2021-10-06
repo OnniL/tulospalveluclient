@@ -1,4 +1,4 @@
-import {Col, Form, FormText, Row} from 'react-bootstrap';
+import {Col, Container, Form, FormText, Row} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import '../Styles.css';
 import React, {useState} from 'react';
@@ -44,14 +44,30 @@ const Players = () => {
   };
 
   const addNewPlayer = () => {
-
+    let player = newPlayer;
+    let group = localStorage.getItem("group");
+    let body;
+    if(player === null || player === ""){
+      alert('Kirjoita pelaajan nimi!');
+    }
+    else {
+      body = { "pelaajan_nimi": player, "ryhman_nimi": group};
+      console.log(body);
+      let xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("POST", "https://rocky-cliffs-72708.herokuapp.com/api/newplayer", true);
+      xmlhttp.setRequestHeader("Content-Type", "application/json");
+      xmlhttp.send(JSON.stringify(body));
+      setTimeout(function(){
+        getPlayers();
+      }, 1000);
+    }
   };
 
   return (
-      <div>
+      <Container>
         <h2>Valitse pelaajat</h2>
         <Form noValidate validated={validated} onSubmit={addNewPlayer}>
-          <Row className="mb-4">
+          <Row className="align-items-center">
             <Col xs="auto">
               <Form.Control type="text" value={newPlayer}
                             onChange={handlePlayerChange}>
@@ -63,7 +79,7 @@ const Players = () => {
           </Row>
         </Form>
 
-      </div>
+      </Container>
   );
 };
 export default Players;

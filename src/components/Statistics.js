@@ -1,9 +1,7 @@
-import {Form, FormText} from 'react-bootstrap';
-import {Button} from 'react-bootstrap';
+import {Form, FormText, Table, Button} from 'react-bootstrap';
 import '../Styles.css';
 import React from 'react';
 import {useHistory} from 'react-router-dom';
-import Table from 'react-bootstrap/Table';
 import Row from 'react-bootstrap/Row';
 
 const Statistics = () => {
@@ -15,7 +13,7 @@ const Statistics = () => {
     return(
         <div>
           <div>
-            <h1>Ryhmän Statistiikka</h1>
+            <h2>Ryhmän Statistiikka</h2>
             <h3>Klikkaa pelaajan nimeä</h3>
           </div>
         <Table striped>
@@ -27,6 +25,11 @@ const Statistics = () => {
           </tr>
           </thead>
           <tbody>
+          <tr>
+            <td>Kaho</td>
+            <td>4</td>
+            <td>1</td>
+          </tr>
           <tr>
             <td>Kaho</td>
             <td>4</td>

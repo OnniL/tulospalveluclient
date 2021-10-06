@@ -8,9 +8,7 @@ import Login from './components/Login'
 import Menu from './components/Menu'
 import Settings from './components/Settings'
 import NewGame from './components/NewGame'
-
 import Statistics from './components/Statistics'
-
 import Players from './components/Players'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
