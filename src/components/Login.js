@@ -40,6 +40,14 @@ const Login = () => {
       if (xmlhttp.readyState === 4 && xmlhttp.status === 202) {
         json = JSON.parse(xmlhttp.responseText);
         console.log(json);
+        if (json.numOfRows > 0){ // something found
+          setGroup(json);
+          console.log("Ryhmä haettu: " + json.nimi);
+        }
+        else {
+          alert("Ryhmää ei löytynyt!");
+
+        }
       }
     };
     xmlhttp.open('GET',
