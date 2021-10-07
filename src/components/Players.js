@@ -1,7 +1,7 @@
 import {Col, Container, Form, FormText, Row, Table} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import '../Styles.css';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Menu from './Menu';
@@ -12,18 +12,20 @@ import Menu from './Menu';
 
 const Players = () => {
 
-  const [newPlayer, setNewPlayer] = useState('');
+  const [newPlayer, setNewPlayer] = useState();
   const [validated, setValidated] = useState(false);
+  const [playerTable, setPlayerTable] = useState();
   const history = useHistory();
   let json;
   let players = [];
   let player;
-  let tableRows;
 
   const handlePlayerChange = (event) => {
     console.log(event.target.value);
     setNewPlayer(event.target.value);
   };
+
+
 
   const getPlayers = () => {
     let xmlhttp = new XMLHttpRequest();
@@ -31,13 +33,18 @@ const Players = () => {
       if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
         json = JSON.parse(xmlhttp.responseText);
         if (json.numOfRows > 0) { // something found
-          // showList(json);
           console.log('Pelaajia löytyi');
           console.log(json);
           for (let i in json.rows) {
             player = {nimi: json.rows[i].nimi, checkbox: false};
             players.push(player);
           }
+          // setPlayerTable(players.map(row =>
+          //         <tr>
+          //           <td>{row.nimi}</td>
+          //           <td>{row.checkbox}</td>
+          //         </tr>
+          // ))
         } else {
           alert('Pelaajia ei löytynyt!');
         }
@@ -49,18 +56,8 @@ const Players = () => {
     xmlhttp.send();
   };
 
-  const renderPlayers = () => {
-    return players.map((player, i) => {
-      const {nimi, checkbox} = player;
-      return (
-          <tr key={nimi}>
-            <td>moi</td>
-            <td>{nimi}</td>
-            <td>{checkbox}</td>
-          </tr>
-      )
-    })
-    }
+
+
 
   const addNewPlayer = () => {
     let player = newPlayer;
@@ -77,7 +74,7 @@ const Players = () => {
       xmlhttp.setRequestHeader('Content-Type', 'application/json');
       xmlhttp.send(JSON.stringify(body));
       setTimeout(function() {
-        getPlayers();
+        getPlayers()
       }, 1000);
     }
   };
@@ -86,8 +83,10 @@ const Players = () => {
     history.push('/molkky');
   };
 
-  //Loads the playerlist
-  getPlayers();
+  useEffect(() => {
+    // Update the document title using the browser API
+    getPlayers()
+  });
 
   return (
       <Container>
@@ -100,7 +99,7 @@ const Players = () => {
               </Form.Control>
             </Col>
             <Col xs="auto">
-              <Button variant="primary" type="submit" size="sm">Lisää</Button>
+              <Button variant="primary" type="submit" size="sm" onClick={addNewPlayer}>Lisää</Button>
             </Col>
           </Row>
           <Table striped responsive size="sm">
@@ -110,9 +109,10 @@ const Players = () => {
             </tr>
             </thead>
             <tbody>
-            {renderPlayers()}
+            {playerTable}
             </tbody>
           </Table>
+          <Button onClick={getPlayers} size="sm">asd</Button>
         </Form>
 
       </Container>
