@@ -1,5 +1,5 @@
 body {
-    background-image: url('images/taustakuva.jpg');
+
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -186,7 +186,7 @@ Button{
     width: 345px;
     color: black !important;
     background-color: transparent !important;
-    background-image: url('images/button.png');
+    background-image: url('button.png');
     background-repeat: no-repeat;
     border: none !important;
     font-size: 50px;
