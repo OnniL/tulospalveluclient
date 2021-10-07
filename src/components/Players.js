@@ -1,4 +1,4 @@
-import {Col, Container, Form, FormText, Row} from 'react-bootstrap';
+import {Col, Container, Form, FormText, Row, Table} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import '../Styles.css';
 import React, {useState} from 'react';
@@ -16,6 +16,9 @@ const Players = () => {
   const [validated, setValidated] = useState(false);
   const history = useHistory();
   let json;
+  let players = [];
+  let player;
+  let tableRows;
 
   const handlePlayerChange = (event) => {
     console.log(event.target.value);
@@ -30,6 +33,11 @@ const Players = () => {
         if (json.numOfRows > 0) { // something found
           // showList(json);
           console.log('Pelaajia löytyi');
+          console.log(json);
+          for (let i in json.rows) {
+            player = {nimi: json.rows[i].nimi, checkbox: false};
+            players.push(player);
+          }
         } else {
           alert('Pelaajia ei löytynyt!');
         }
@@ -38,30 +46,48 @@ const Players = () => {
     xmlhttp.open('GET',
         'https://rocky-cliffs-72708.herokuapp.com/api/players?group=' +
         localStorage.getItem('group'), true);
-    console.log('testi1');
     xmlhttp.send();
-    console.log('testi2');
   };
+
+  const renderPlayers = () => {
+    return players.map((player, i) => {
+      const {nimi, checkbox} = player;
+      return (
+          <tr key={nimi}>
+            <td>moi</td>
+            <td>{nimi}</td>
+            <td>{checkbox}</td>
+          </tr>
+      )
+    })
+    }
 
   const addNewPlayer = () => {
     let player = newPlayer;
-    let group = localStorage.getItem("group");
+    let group = localStorage.getItem('group');
     let body;
-    if(player === null || player === ""){
+    if (player === null || player === '') {
       alert('Kirjoita pelaajan nimi!');
-    }
-    else {
-      body = { "pelaajan_nimi": player, "ryhman_nimi": group};
+    } else {
+      body = {'pelaajan_nimi': player, 'ryhman_nimi': group};
       console.log(body);
       let xmlhttp = new XMLHttpRequest();
-      xmlhttp.open("POST", "https://rocky-cliffs-72708.herokuapp.com/api/newplayer", true);
-      xmlhttp.setRequestHeader("Content-Type", "application/json");
+      xmlhttp.open('POST',
+          'https://rocky-cliffs-72708.herokuapp.com/api/newplayer', true);
+      xmlhttp.setRequestHeader('Content-Type', 'application/json');
       xmlhttp.send(JSON.stringify(body));
-      setTimeout(function(){
+      setTimeout(function() {
         getPlayers();
       }, 1000);
     }
   };
+
+  const handleMolkkyGame = () => {
+    history.push('/molkky');
+  };
+
+  //Loads the playerlist
+  getPlayers();
 
   return (
       <Container>
@@ -77,6 +103,16 @@ const Players = () => {
               <Button variant="primary" type="submit" size="sm">Lisää</Button>
             </Col>
           </Row>
+          <Table striped responsive size="sm">
+            <thead>
+            <tr>
+              <th>Tallennetut pelaajat</th>
+            </tr>
+            </thead>
+            <tbody>
+            {renderPlayers()}
+            </tbody>
+          </Table>
         </Form>
 
       </Container>
