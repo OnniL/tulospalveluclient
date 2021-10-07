@@ -1,22 +1,32 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Form, FormText} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom';
 import '../Styles.css';
+import { useEffect } from 'react';
 
 const Login = () => {
 
   /**
    * @author Henrik Aho, Onni Lukkarila
    */
-
+  const h1 = useRef();
   const [newEmail, setNewEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [validated, setValidated] = useState(false);
   let json;
   let xmlhttp = new XMLHttpRequest();
   let history = useHistory();
-
+  useEffect(() => {
+    if(localStorage.getItem("mode") === "dark"){
+      document.body.style.backgroundImage = "url('./images/darkmode.jpg')";
+      h1.current.style.color = "white";
+    }
+    else {
+      document.body.style.backgroundImage = "url('./images/taustakuva.jpg')";
+      h1.current.style.color = "black";
+    }
+  }, []);
   /**
    * Hankkii ryhmän tunnukset tietokannasta.
    */
@@ -121,7 +131,7 @@ const Login = () => {
 
   return (
       <div>
-      <h1>Tulospalvelu</h1>
+      <h1 ref={h1}>Tulospalvelu</h1>
         <Form noValidate validated={validated} onSubmit={getGroup}>
           <h2>Kirjaudu sisään ryhmän tunnuksilla</h2>
           <Form.Group className="mb-3" controlId="formBasicEmail">
