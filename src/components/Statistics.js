@@ -1,16 +1,34 @@
 import {Form, FormText, Table, Button, Modal} from 'react-bootstrap';
 import '../Styles.css';
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 
 const Statistics = () => {
   const history = useHistory();
+  const h2 = useRef();
+  const h3 = useRef();
   const handleMenu = () => {
     history.push('/menu')
+
+
   }
 
-
+  /**
+   * Checks the current mode and makes changes if necessary
+   */
+  useEffect(() => {
+    if(localStorage.getItem("mode") === "dark"){
+      document.body.style.backgroundImage = "url('./images/darkmode.jpg')";
+      h2.current.style.color = "white";
+      h3.current.style.color = "white";
+    }
+    else {
+      document.body.style.backgroundImage = "url('./images/taustakuva.jpg')";
+      h2.current.style.color = "black";
+      h3.current.style.color = "black";
+    }
+  }, []);
   function MyVerticallyCenteredModal(props) {
     return (
         <Modal
@@ -70,8 +88,8 @@ const [modalShow, setModalShow] = React.useState(false);
     return(
         <div>
           <div>
-            <h2>Ryhmän Statistiikka</h2>
-            <h3>Klikkaa pelaajan nimeä</h3>
+            <h2 ref={h2}>Ryhmän Statistiikka</h2>
+            <h3 ref={h3}>Klikkaa pelaajan nimeä</h3>
           </div>
         <Table striped>
           <thead>
