@@ -26,7 +26,6 @@ const Players = () => {
   };
 
 
-
   const getPlayers = () => {
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
@@ -39,12 +38,16 @@ const Players = () => {
             player = {nimi: json.rows[i].nimi, checkbox: false};
             players.push(player);
           }
-          // setPlayerTable(players.map(row =>
-          //         <tr>
-          //           <td>{row.nimi}</td>
-          //           <td>{row.checkbox}</td>
-          //         </tr>
-          // ))
+          setPlayerTable(players.map((row, i) =>
+                  <tr>
+                    <td>{row.nimi}</td>
+                    <td>
+                      <input className="form-check-input" type="checkbox"
+                             id={i} defaultChecked={row.checkbox}
+                             onClick={() => row.checkbox = !row.checkbox}/>
+                    </td>
+                  </tr>
+          ))
         } else {
           alert('Pelaajia ei löytynyt!');
         }
@@ -59,7 +62,8 @@ const Players = () => {
 
 
 
-  const addNewPlayer = () => {
+  const addNewPlayer = (event) => {
+    event.preventDefault()
     let player = newPlayer;
     let group = localStorage.getItem('group');
     let body;
@@ -84,9 +88,8 @@ const Players = () => {
   };
 
   useEffect(() => {
-    // Update the document title using the browser API
     getPlayers()
-  });
+  }, []);
 
   return (
       <Container>
@@ -112,7 +115,7 @@ const Players = () => {
             {playerTable}
             </tbody>
           </Table>
-          <Button onClick={getPlayers} size="sm">asd</Button>
+          <Button onClick={handleMolkkyGame} size="sm">Aloita peli</Button>
         </Form>
 
       </Container>

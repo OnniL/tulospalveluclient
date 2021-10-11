@@ -10,7 +10,7 @@ const Molkky = () => {
 
   return (
       <Container className="my-auto">
-        <h1>Ryhmä: {localStorage.getItem('group')}</h1>
+        <h2>Mölkky</h2>
 
       </Container>
   );
