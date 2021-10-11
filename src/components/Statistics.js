@@ -10,6 +10,32 @@ const Statistics = () => {
     history.push('/menu')
   }
 
+  let json;
+  let player;
+  const getPlayers = () => {
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+        json = JSON.parse(xmlhttp.responseText);
+        if (json.numOfRows > 0) { // something found
+          // showList(json);
+          console.log('Pelaajia löytyi')
+          for(let i in json.rows) {
+            player = {nimi: json.rows[i].nimi};
+          }
+        } else {
+          alert('Pelaajia ei löytynyt!');
+        }
+      }
+    };
+    xmlhttp.open('GET',
+        'https://rocky-cliffs-72708.herokuapp.com/api/players?group=' +
+        localStorage.getItem('group'), true);
+    console.log('testi1');
+    xmlhttp.send();
+    console.log('testi2');
+  };
+
 
   function MyVerticallyCenteredModal(props) {
     return (
