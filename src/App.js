@@ -10,6 +10,7 @@ import Settings from './components/Settings'
 import NewGame from './components/NewGame'
 import Statistics from './components/Statistics'
 import Players from './components/Players'
+import Molkky from './components/Molkky'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
 
@@ -27,10 +28,9 @@ const App = () => {
         <Route path="/menu" component={Menu}/>
         <Route path="/settings" component={Settings}/>
         <Route path="/newgame" component={NewGame}/>
-
         <Route path="/statistics" component={Statistics}/>
-
         <Route path="/players" component={Players}/>
+        <Route path="/molkky" component={Molkky}/>
 
 
       </div>
