@@ -3,8 +3,6 @@ import {Button} from 'react-bootstrap';
 import '../Styles.css';
 import React, {useEffect, useRef, useState} from 'react';
 import {useHistory} from 'react-router-dom';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Menu from './Menu';
 
 /**
  * @author Onni Lukkarila
@@ -85,17 +83,20 @@ const Players = () => {
   };
 
   const handleMolkkyGame = () => {
-    let player;
-    let string;
+    let playerAmount = 0;
+    let playersToAdd = [];
     let rows = table.current.rows;
     for (let i = 0; i<rows.length; i++){
       if(rows[i].children[1].children[0].checked === true){
-        localStorage.setItem("player" + i, rows[i].children[0].innerText);
-      }
-      else{
-        localStorage.removeItem("player" + i);
+        playersToAdd.push(rows[i].children[0].innerText)
+        playerAmount++;
       }
     }
+    for (let i in playersToAdd){
+      localStorage.removeItem("player" + i);
+      localStorage.setItem("player" + i, playersToAdd[i]);
+    }
+    localStorage.setItem("playerAmount", playerAmount.toString());
     history.push('/molkky');
   };
 
@@ -114,7 +115,7 @@ const Players = () => {
               </Form.Control>
             </Col>
             <Col xs="auto">
-              <Button variant="primary" type="submit" size="sm" onClick={addNewPlayer}>Lisää</Button>
+              <Button variant="primary" type="submit" size="sm">Lisää</Button>
             </Col>
           </Row>
           <Table striped responsive size="sm">
