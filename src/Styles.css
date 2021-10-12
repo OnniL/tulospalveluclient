@@ -28,6 +28,16 @@ body {
     flex-direction: row;
 }
 
+.modalBody {
+    display: flex;
+    flex-direction: column;
+}
+
+.modalRow {
+    display: flex;
+    flex-direction: column;
+}
+
 h1 {
     transform: scale(1.5);
     text-align: center;
