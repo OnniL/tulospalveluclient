@@ -1,7 +1,7 @@
 import {Form, FormText} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import '../Styles.css';
-import React, {useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import {useHistory} from 'react-router-dom';
 
@@ -17,6 +17,21 @@ const Settings = () => {
   const handleSettings = () => {
     history.push('/menu')
   }
+    /**
+     * Checks the current mode and makes changes if necessary
+     */
+    useEffect(() => {
+        if(localStorage.getItem("mode") === "dark"){
+            document.body.style.backgroundImage = "url('./images/darkmode.jpg')";
+            h1.current.style.color = "white";
+            h2.current.style.color = "white";
+        }
+        else {
+            document.body.style.backgroundImage = "url('./images/taustakuva.jpg')";
+            h1.current.style.color = "black";
+            h2.current.style.color = "black";
+        }
+    }, []);
     /**
      * Functions to handle changes of the websites theme based on buttons pressed
      */
