@@ -1,10 +1,8 @@
 import {Col, Container, Form, FormText, Row, Table} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import '../Styles.css';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useHistory} from 'react-router-dom';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Menu from './Menu';
 
 /**
  * @author Onni Lukkarila
@@ -16,9 +14,11 @@ const Players = () => {
   const [validated, setValidated] = useState(false);
   const [playerTable, setPlayerTable] = useState();
   const history = useHistory();
+  const table = useRef();
   let json;
   let players = [];
   let player;
+
 
   const handlePlayerChange = (event) => {
     console.log(event.target.value);
@@ -40,10 +40,10 @@ const Players = () => {
           }
           setPlayerTable(players.map((row, i) =>
                   <tr>
-                    <td>{row.nimi}</td>
+                    <td id={"name" + i}>{row.nimi}</td>
                     <td>
                       <input className="form-check-input" type="checkbox"
-                             id={i} defaultChecked={row.checkbox}
+                             id={"checkbox" + i} defaultChecked={row.checkbox}
                              onClick={() => row.checkbox = !row.checkbox}/>
                     </td>
                   </tr>
@@ -52,14 +52,13 @@ const Players = () => {
           alert('Pelaajia ei löytynyt!');
         }
       }
+
     };
     xmlhttp.open('GET',
         'https://rocky-cliffs-72708.herokuapp.com/api/players?group=' +
         localStorage.getItem('group'), true);
     xmlhttp.send();
   };
-
-
 
 
   const addNewPlayer = (event) => {
@@ -84,6 +83,20 @@ const Players = () => {
   };
 
   const handleMolkkyGame = () => {
+    let playerAmount = 0;
+    let playersToAdd = [];
+    let rows = table.current.rows;
+    for (let i = 0; i<rows.length; i++){
+      if(rows[i].children[1].children[0].checked === true){
+        playersToAdd.push(rows[i].children[0].innerText)
+        playerAmount++;
+      }
+    }
+    for (let i in playersToAdd){
+      localStorage.removeItem("player" + i);
+      localStorage.setItem("player" + i, playersToAdd[i]);
+    }
+    localStorage.setItem("playerAmount", playerAmount.toString());
     history.push('/molkky');
   };
 
@@ -102,7 +115,7 @@ const Players = () => {
               </Form.Control>
             </Col>
             <Col xs="auto">
-              <Button variant="primary" type="submit" size="sm" onClick={addNewPlayer}>Lisää</Button>
+              <Button variant="primary" type="submit" size="sm">Lisää</Button>
             </Col>
           </Row>
           <Table striped responsive size="sm">
@@ -111,7 +124,7 @@ const Players = () => {
               <th>Tallennetut pelaajat</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody ref={table}>
             {playerTable}
             </tbody>
           </Table>

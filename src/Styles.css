@@ -126,21 +126,24 @@ ul {
 }
 
 .grid-container {
-    display: grid;
+    display: grid !important;
+    align-items: stretch !important;
     background-color: black;
-    padding: 10px;
+    padding: 0.2em !important;
     max-height: 550px;
     overflow: scroll;
-
+    border-radius: 0.5em;
 }
 
 .grid-item {
     background-color: navajowhite;
     border: 2px solid rgba(0, 0, 0, 0.8);
-    padding: 7px;
-    font-size: 30px;
+    padding: 0.1em 0.1em !important;
     text-align: center;
+    font-weight: bold;
     grid-template-columns: min-content 100px;
+    border-radius: 0.5em;
+    margin: 0 !important;
 }
 
 
@@ -257,9 +260,9 @@ Form{
     padding: 0;
 }
 
-
-Row {
+.row {
     display: flex;
+    margin: 0 !important;
 }
 
 .backToMenu{
@@ -267,9 +270,6 @@ Row {
     align-content: center;
     justify-content: center;
 }
-
-
-
 
 .btn-sm {
     height: 3.4em;

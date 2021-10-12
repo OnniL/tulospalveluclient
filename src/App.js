@@ -17,11 +17,6 @@ import axios from 'axios'
 const App = () => {
   const history = useHistory();
 
-
-  useEffect(() => {
-    history.push('/login')
-  }, [])
-
   return (
       <div className="container">
         <Route path="/login" component={Login}/>
