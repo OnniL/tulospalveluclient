@@ -3,17 +3,16 @@ import {Col, Container, Form, InputGroup, Row} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom';
 import '../Styles.css';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
-let scores = [];
-let strikes = [];
-let playerLost = [];
-let players = [];
-let currentPlayer = 0;
-let roundCounter = 1;
-let rows = [1];
-let string;
-let allScores = [];
+
+let scores;
+let strikes;
+let playerLost;
+let players;
+let currentPlayer;
+let roundCounter;
+let allScores;
+let rows;
 
 const Molkky = () => {
   const history = useHistory();
@@ -30,8 +29,17 @@ const Molkky = () => {
   const showStartGrid = () => {
     setNameGrid('');
     let player;
-    players = [];
     let playerAmount = parseInt(localStorage.getItem('playerAmount'));
+
+    scores = [];
+    strikes = [];
+    playerLost = [];
+    players = [];
+    currentPlayer = 0;
+    roundCounter = 1;
+    allScores = [];
+    rows = [1];
+
 
     for (let i = 0; i < playerAmount; i++) {
       player = localStorage.getItem('player' + i);
@@ -41,6 +49,7 @@ const Molkky = () => {
         scores.push(0);
         strikes.push(0);
         playerLost.push(false);
+
       }
     }
     console.log(players);
@@ -64,6 +73,7 @@ const Molkky = () => {
     } else if (strikes[playerToUpdate] >= 3) {
       playerLost[playerToUpdate] = true;
     }
+    console.log(scores)
     setNameGrid(scores.map((row, i) =>
         <Col className="grid-item">{players[i] + ': ' + scores[i]}</Col>));
   };
@@ -71,21 +81,18 @@ const Molkky = () => {
   const addNewScore = (event) => {
 
     event.preventDefault();
-    let score = 0;
-    let gameGrid;
+    let score;
     score = newScore;
-
 
     if (score > 12 || score < 0) {
       alert('Anna tulos väliltä 0-12!');
     } else {
       allScores.push(score)
-      console.log(allScores[0])
       updateScore(currentPlayer, score);
       setScoreGrid(rows.map((row) =>
               <Row>
                 {scores.map((score, i) =>
-                    <Col className="grid-item">{"tulos: " + allScores[row * players.length + i]}</Col>)}
+                    <Col className="grid-item" id={row + "" + i}>{allScores[(row - 1) * players.length + i]}</Col>)}
               </Row>
           )
       );
@@ -101,8 +108,13 @@ const Molkky = () => {
   };
 
   const winnerFound = () => {
-    alert('Voittoja löydetty jeejee');
+    alert(players[currentPlayer] + " voitti pelin!");
   };
+
+
+  const endGame = () => {
+    if(window.confirm("Haluatko lopettaa pelin?")) history.push("/menu");
+  }
 
   useEffect(() => {
     showStartGrid();
@@ -135,6 +147,7 @@ const Molkky = () => {
             </Button>
           </Col>
         </Form>
+        <Button size="lg" onClick={endGame}>Lopeta</Button>
       </Container>
   );
 };
