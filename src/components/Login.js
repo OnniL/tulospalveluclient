@@ -118,7 +118,7 @@ const Login = () => {
         </Form>
 
         <i>Haluatko luoda uuden ryhmän?</i>
-        <Button size="lg" onClick={handleRegister}>Rekisteröidy</Button>
+        <Button size="lg" onClick={handleRegister} style={{fontsize: "1em"}}>Rekisteröidy</Button>
       </Container>
   );
 };

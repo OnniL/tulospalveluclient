@@ -1,8 +1,5 @@
-import React, {useEffect, useState} from 'react'
-import {
-  BrowserRouter as Router,
-  Switch, Route, Link, useHistory
-} from 'react-router-dom'
+import React, {useEffect} from 'react'
+import {Route, useHistory} from 'react-router-dom'
 
 import Login from './components/Login'
 import Register from './components/Register'

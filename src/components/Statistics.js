@@ -1,8 +1,7 @@
-import {Form, FormText, Table, Button, Modal} from 'react-bootstrap';
+import {Form, FormText, Table, Button, Modal, Container} from 'react-bootstrap';
 import '../Styles.css';
 import React, {useEffect, useState} from 'react';
 import {useHistory} from 'react-router-dom';
-import Row from 'react-bootstrap/Row';
 
 const Statistics = () => {
   const history = useHistory();
@@ -129,7 +128,7 @@ const Statistics = () => {
             }
             console.log(advancedPlayers);
             setAdvancedPlayerTable(advancedPlayers.map((row, i) =>
-                <tr className='statsRow'>
+                <tr>
                   <td>{row.nimi}</td>
                   <td>{row.pelatutlkm}</td>
                   <td>{row.voitotlkm}</td>
@@ -159,19 +158,17 @@ const Statistics = () => {
 
 
   return(
-      <div>
-        <div>
-          <h2>Ryhmän Statistiikka</h2>
-        </div>
-        <Table striped>
-          <thead>
-          <tr className='testi'>
+      <Container>
+          <h1>Ryhmän Statistiikka</h1>
+        <Table striped style={{margin: "0 5em", overflow: "auto"}}>
+          <thead style={{maxWidth: "25em"}}>
+          <tr>
             <th>Nimi:</th>
             <th>Ottelut:</th>
             <th>Voitot:</th>
-            <th>Voittoprosentti:</th>
+            <th>Voitto%:</th>
             <th>Heitot:</th>
-            <th>Osumatarkkuus:</th>
+            <th>Osuma%:</th>
             <th>Pistekeskiarvo:</th>
           </tr>
           </thead>
@@ -182,7 +179,7 @@ const Statistics = () => {
         <div className="backToMenu">
           <Button onClick={handleMenu} size="lg">Takaisin</Button>
         </div>
-      </div>
+      </Container>
   );
 
 };

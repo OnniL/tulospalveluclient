@@ -123,7 +123,7 @@ const Players = () => {
               <Button variant="primary" type="submit" size="sm">Lisää</Button>
             </Col>
           </Row>
-          <Table striped responsive size="sm">
+          <Table striped responsive size="sm" id="playerTable">
             <thead>
             <tr>
               <th>Tallennetut pelaajat</th>
