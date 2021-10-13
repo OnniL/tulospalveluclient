@@ -98,7 +98,7 @@ Table {
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
     padding-top: 0;
     margin-top: 1em;
-
+    font-family: "Courier New";
 }
 tbody {
     display: flex;
@@ -187,7 +187,7 @@ ul {
 }
 
 h2 {
-    margin-top: 0;
+    margin: 0 0 0.7em 0 !important;
     text-align: center;
     font-family: "Courier New";
 }
@@ -204,6 +204,11 @@ h3 {
 
 #pelaajatOtsikko{
     margin-bottom: 0;
+}
+
+i{
+    font-weight: bold;
+    margin-top: 1em;
 }
 
 Button{
@@ -244,7 +249,7 @@ Form{
     border-radius: 1em !important;
     text-align: center;
     font-family: "Courier New";
-    max-width: 12em;
+    max-width: 15em;
     font-size: 0.7em !important;
 }
 
@@ -266,7 +271,8 @@ Form{
 .mb-3{
     border-radius: 1em;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin: 0 0 0.5em 0;
 }
 

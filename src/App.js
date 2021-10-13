@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom'
 
 import Login from './components/Login'
+import Register from './components/Register'
 import Menu from './components/Menu'
 import Settings from './components/Settings'
 import NewGame from './components/NewGame'
@@ -31,7 +32,7 @@ const App = () => {
         <Route path="/statistics" component={Statistics}/>
         <Route path="/players" component={Players}/>
         <Route path="/molkky" component={Molkky}/>
-
+        <Route path="/register" component={Register}/>
 
       </div>
   )

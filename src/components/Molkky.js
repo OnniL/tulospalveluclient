@@ -20,6 +20,7 @@ let allScores;
 let rows;
 let playerScoreList
 let winner;
+let someoneHasWon;
 
 const Molkky = () => {
   const history = useHistory();
@@ -51,6 +52,7 @@ const Molkky = () => {
     allScores = [];
     rows = [1];
     playerScoreList = [];
+    someoneHasWon = false;
 
 
     for (let i = 0; i < playerAmount; i++) {
@@ -138,7 +140,8 @@ const Molkky = () => {
     }
 
     if (scores[playerToUpdate] === 50) {
-      winnerFound();
+      if(!someoneHasWon) winnerFound();
+      else alert(players[currentPlayer] + ' saavutti 50 pistettä!')
     } else if (scores[playerToUpdate] > 50) {
       scores[playerToUpdate] = 25;
     } else if (strikes[playerToUpdate] >= 3) {
@@ -184,6 +187,7 @@ const Molkky = () => {
 
   const winnerFound = () => {
     winner = players[currentPlayer];
+    someoneHasWon = true;
     setDisable(false)
     alert(players[currentPlayer] + " voitti pelin!");
   };
@@ -236,7 +240,6 @@ const Molkky = () => {
     }
 
   }
-
 
   const endGame = () => {
     if(window.confirm("Haluatko lopettaa pelin?")) history.push("/menu");

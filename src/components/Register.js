@@ -1,22 +1,27 @@
 import React, {useRef, useState} from 'react';
-import {Container, Form, FormText} from 'react-bootstrap';
+import {Container, Form} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom';
 import '../Styles.css';
 import { useEffect } from 'react';
 
-const Login = () => {
+
+const Register = () => {
 
   /**
-   * @author Henrik Aho, Onni Lukkarila
+   * @author Onni Lukkarila, Nikke Tikka
    */
   const h1 = useRef();
   const [newEmail, setNewEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
+  const [newPassword2, setNewPassword2] = useState('');
   const [validated, setValidated] = useState(false);
   let json;
   let xmlhttp = new XMLHttpRequest();
   let history = useHistory();
+
+
+
   useEffect(() => {
     if(localStorage.getItem("mode") === "dark"){
       document.body.style.backgroundImage = "url('./images/darkmode.jpg')";
@@ -30,19 +35,7 @@ const Login = () => {
   /**
    * Hankkii ryhmän tunnukset tietokannasta.
    */
-  const getGroup = event => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-    event.preventDefault();
-    event.stopPropagation();
-
-    const userObject = {
-      email: newEmail,
-      password: newPassword,
-    };
+  const getGroup = (event) => {
 
     xmlhttp.onreadystatechange = function() {
       if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
@@ -74,6 +67,28 @@ const Login = () => {
     console.log(localStorage.getItem('group'));
   }
 
+  /**
+   * Luo uuden ryhmän.
+   */
+  const newGroup = (event) =>  {
+    event.preventDefault();
+    let body;
+      if (newPassword !== newPassword2) {
+        alert('Salasanat eivät täsmää!');
+      } else {
+
+        body = {'nimi': newEmail, 'salasana': newPassword};
+        console.log(body)
+        let xmlhttp = new XMLHttpRequest();
+        xmlhttp.open('POST',
+            'https://rocky-cliffs-72708.herokuapp.com/api/newgroup', true);
+        xmlhttp.setRequestHeader('Content-Type', 'application/json');
+        xmlhttp.send(JSON.stringify(body));
+        localStorage.setItem('group', newEmail);
+        handleRoute();
+      }
+    }
+
 
   const handleEmailChange = (event) => {
     console.log(event.target.value);
@@ -85,20 +100,24 @@ const Login = () => {
     setNewPassword(event.target.value);
   };
 
+  const handlePassword2Change = (event) => {
+    console.log(event.target.value);
+    setNewPassword2(event.target.value);
+  };
 
   const handleRoute = () =>{
     history.push("/menu");
   }
 
-  const handleRegister = () =>{
-    history.push("/register")
+  const handleLogin = () => {
+    history.push("/login")
   }
 
   return (
       <Container>
-      <h1 ref={h1}>Tulospalvelu</h1>
-        <Form noValidate validated={validated} onSubmit={getGroup}>
-          <h2>Kirjaudu sisään ryhmän tunnuksilla</h2>
+        <h1 ref={h1}>Tulospalvelu</h1>
+        <Form noValidate validated={validated} onSubmit={newGroup}>
+          <h2>Luo uusi ryhmä</h2>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control type="text" value={newEmail}
                           onChange={handleEmailChange} placeholder="Nimi"
@@ -112,15 +131,23 @@ const Login = () => {
             <Form.Control.Feedback type="invalid">Syötä salasana!</Form.Control.Feedback>
           </Form.Group>
 
+          <Form.Group className="mb-3" controlId="formBasicPassword2">
+            <Form.Control type="password" value={newPassword2}
+                          onChange={handlePassword2Change} placeholder="Salasana uudestaan"
+                          required/>
+            <Form.Control.Feedback type="invalid">Salasana ei täsmää!</Form.Control.Feedback>
+          </Form.Group>
+
           <Button size="me" type="submit" to="/menu" >
-            Kirjaudu
+            Rekisteröidy
           </Button>
         </Form>
 
-        <i>Haluatko luoda uuden ryhmän?</i>
-        <Button size="lg" onClick={handleRegister}>Rekisteröidy</Button>
+        <i>Oletko jo luonut ryhmän?</i>
+        <Button size="lg" onClick={handleLogin}>Kirjaudu</Button>
+
       </Container>
   );
 };
 
-export default Login;
+export default Register;
