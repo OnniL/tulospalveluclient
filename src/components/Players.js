@@ -111,7 +111,7 @@ const Players = () => {
 
   return (
       <Container>
-        <h2>Valitse pelaajat</h2>
+        <h1>Valitse pelaajat</h1>
         <Form noValidate validated={validated} onSubmit={addNewPlayer}>
           <Row className="align-items-center">
             <Col xs="auto">

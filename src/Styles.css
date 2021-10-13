@@ -33,7 +33,7 @@ h1 {
     text-align: center;
     font-family: "Courier New";
     padding-top: 10px;
-    max-width: 100%;
+    max-width: 70%;
     height: auto;
 }
 
@@ -244,7 +244,7 @@ Form{
     border-radius: 1em !important;
     text-align: center;
     font-family: "Courier New";
-    max-width: 8em;
+    max-width: 12em;
     font-size: 0.7em !important;
 }
 

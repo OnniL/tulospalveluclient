@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {Form, FormText} from 'react-bootstrap';
+import {Container, Form, FormText} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom';
 import '../Styles.css';
@@ -130,7 +130,7 @@ const Login = () => {
   }
 
   return (
-      <div>
+      <Container>
       <h1 ref={h1}>Tulospalvelu</h1>
         <Form noValidate validated={validated} onSubmit={getGroup}>
           <h2>Kirjaudu sisään ryhmän tunnuksilla</h2>
@@ -149,7 +149,7 @@ const Login = () => {
             Kirjaudu
           </Button>
         </Form>
-      </div>
+      </Container>
   );
 };
 

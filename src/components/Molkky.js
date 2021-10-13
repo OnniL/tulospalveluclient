@@ -232,6 +232,7 @@ const Molkky = () => {
       xmlhttp.setRequestHeader("Content-Type", "application/json");
       xmlhttp.send(JSON.stringify(body));
       alert("Peli tallennettu!");
+      setDisable(true);
     }
 
   }

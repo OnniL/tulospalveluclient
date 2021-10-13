@@ -209,7 +209,7 @@ const Statistics = () => {
   return (
       <div>
         <div>
-          <h2>Ryhmän Statistiikka</h2>
+          <h1>Ryhmän Statistiikka</h1>
           <h3>Klikkaa pelaajan nimeä</h3>
         </div>
         <Table striped>
