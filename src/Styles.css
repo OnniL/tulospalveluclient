@@ -187,7 +187,7 @@ ul {
     align-items: stretch !important;
     background-color: black;
     padding: 0.2em !important;
-    max-height: 550px;
+    max-height: 250px;
     overflow: scroll;
     border-radius: 0.5em;
 }
