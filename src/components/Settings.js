@@ -1,4 +1,4 @@
-import {Form, FormText} from 'react-bootstrap';
+import {Container, Form, FormText} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import '../Styles.css';
 import React, {useEffect, useRef} from 'react';
@@ -52,15 +52,15 @@ const Settings = () => {
     }
 
   return (
-      <div>
+      <Container>
         <h1 ref={h1}>Asetukset</h1>
         <h2 ref={h2}>Light/Dark Mode</h2>
         <ButtonGroup className="buttonGroup">
-          <Button onClick={changeLightmode}>Light</Button>
-          <Button onClick={changeDarkmode}>Dark</Button>
-          <Button onClick={handleSettings}>Takaisin</Button>
+          <Button onClick={changeLightmode} size="lg" >Light</Button>
+          <Button onClick={changeDarkmode} size="lg">Dark</Button>
+          <Button onClick={handleSettings} size="lg">Takaisin</Button>
         </ButtonGroup>
-      </div>
+      </Container>
   );
 };
 

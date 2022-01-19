@@ -39,9 +39,9 @@ const Players = () => {
             players.push(player);
           }
           setPlayerTable(players.map((row, i) =>
-                  <tr>
-                    <td id={"name" + i}>{row.nimi}</td>
-                    <td>
+                  <tr id="playersTRow">
+                    <td id="playersTableName">{row.nimi}</td>
+                    <td id="playersTableCB">
                       <input className="form-check-input" type="checkbox"
                              id={"checkbox" + i} defaultChecked={row.checkbox}
                              onClick={() => row.checkbox = !row.checkbox}/>
@@ -87,18 +87,23 @@ const Players = () => {
     let playersToAdd = [];
     let rows = table.current.rows;
     for (let i = 0; i<rows.length; i++){
+      localStorage.removeItem("player" + i);
       if(rows[i].children[1].children[0].checked === true){
         playersToAdd.push(rows[i].children[0].innerText)
         playerAmount++;
       }
     }
     for (let i in playersToAdd){
-      localStorage.removeItem("player" + i);
+
       localStorage.setItem("player" + i, playersToAdd[i]);
     }
     localStorage.setItem("playerAmount", playerAmount.toString());
     history.push('/molkky');
   };
+
+  const handleBack = () =>{
+    history.push("/newgame")
+  }
 
   useEffect(() => {
     getPlayers()
@@ -106,7 +111,7 @@ const Players = () => {
 
   return (
       <Container>
-        <h2>Valitse pelaajat</h2>
+        <h1>Valitse pelaajat</h1>
         <Form noValidate validated={validated} onSubmit={addNewPlayer}>
           <Row className="align-items-center">
             <Col xs="auto">
@@ -118,7 +123,7 @@ const Players = () => {
               <Button variant="primary" type="submit" size="sm">Lisää</Button>
             </Col>
           </Row>
-          <Table striped responsive size="sm">
+          <Table striped responsive size="sm" id="playerTable">
             <thead>
             <tr>
               <th>Tallennetut pelaajat</th>
@@ -130,6 +135,8 @@ const Players = () => {
           </Table>
           <Button onClick={handleMolkkyGame} size="sm">Aloita peli</Button>
         </Form>
+
+        <Button size="lg" onClick={handleBack}>Takaisin</Button>
 
       </Container>
   );
