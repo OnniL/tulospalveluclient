@@ -1,7 +1,8 @@
 # TulospalveluClient
 Web-sovellus seurapelien tulosten ylhäällä pitämiselle. Tällä hetkellä tulospalvelu tukee kaikkien tuntemaa mölkkyä!
 
-Voit kokeilla sitä täällä: https://mokkitulospalvelu.herokuapp.com/
+Voit kokeilla sitä täällä: https://mokkitulospalvelu.herokuapp.com/ (ensimmäinen latauskerta saattaa kestää hieman aikaa)
+
 Sovellus on responsiivinen, mutta se on tarkoitettu käytettäväksi mobiililaitteella, joten tietyt näkymät ovat suunniteltu priorisoiden mobiililaitteita.
 
 Tulospalvelu on tehty yhteensä noin kuuden viikon aikana ryhmätyönä Metropolia-ammattikorkeakoulussa.
