@@ -166,9 +166,9 @@ const Molkky = () => {
     let score;
     score = newScore;
 
-    if (score > 12 || score < 0) {
-      alert('Anna tulos väliltä 0-12!');
-    } else {
+    if (score > 12 || score < 0) alert('Anna tulos väliltä 0-12!');
+    else if (score == null || score.isEmpty || score === '') alert('Et syöttänyt tulosta');
+    else {
       allScores.push(score)
       updateScore(currentPlayer, score);
       setScoreGrid(rows.map((row) =>
