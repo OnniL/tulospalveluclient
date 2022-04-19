@@ -196,6 +196,11 @@ const Molkky = () => {
           )
       );
       currentPlayer++;
+      if (currentPlayer === players.length) {
+        currentPlayer = 0;
+        roundCounter++;
+        rows.push(roundCounter);
+      }
     }
     setgameInstruction('Anna pelaajan ' + players[currentPlayer] + ' tulos:')
     scrollToBottom();
