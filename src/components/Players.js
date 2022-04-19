@@ -78,6 +78,7 @@ const Players = () => {
       xmlhttp.send(JSON.stringify(body));
       setTimeout(function() {
         getPlayers()
+        setNewPlayer('')
       }, 1000);
     }
   };

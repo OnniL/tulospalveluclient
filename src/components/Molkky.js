@@ -156,14 +156,16 @@ const Molkky = () => {
   };
 
   const addNewScore = (event) => {
-
     event.preventDefault();
     let score;
     score = newScore;
 
     if (score > 12 || score < 0) {
-      alert('Anna tulos väliltä 0-12!');
-    } else {
+      setValidated(true)
+    }else if(score == null || ""){
+      setValidated(true)
+    }
+    else {
       allScores.push(score)
       updateScore(currentPlayer, score);
       setScoreGrid(rows.map((row) =>
@@ -179,10 +181,10 @@ const Molkky = () => {
         roundCounter++;
         rows.push(roundCounter);
       }
+      setValidated(false);
     }
-
+    setNewScore('')
     setgameInstruction('Anna pelaajan ' + players[currentPlayer] + ' tulos:')
-
   };
 
   const winnerFound = () => {
@@ -271,6 +273,7 @@ const Molkky = () => {
                           placeholder="0-12"
                           required>
             </Form.Control>
+            <Form.Control.Feedback type="invalid">Syötä hyväksyttävä tulos! (0-12)</Form.Control.Feedback>
           </Col>
           <Col xs="auto">
             <Button variant="primary"

@@ -9,6 +9,7 @@ import NewGame from './components/NewGame'
 import Statistics from './components/Statistics'
 import Players from './components/Players'
 import Molkky from './components/Molkky'
+import Ristiseiska from './components/Ristiseiska'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
 import * as path from 'path';
@@ -30,7 +31,7 @@ const App = () => {
         <Route path="/players" component={Players}/>
         <Route path="/molkky" component={Molkky}/>
         <Route path="/register" component={Register}/>
-
+        <Route path="/ristiseiska" component={Ristiseiska}/>
       </div>
   )
 }

@@ -41,7 +41,7 @@ const Menu = () => {
   return (
       <Container className="my-auto">
         <h1 ref={h1}>Ryhmä: {localStorage.getItem('group')}</h1>
-        <ButtonGroup Vertical className="buttonGroup">
+        <ButtonGroup className="buttonGroup">
 
           <Button onClick={handleNewGame} size="lg">Uusi Peli</Button>
           <Button onClick={handleStatistics} size="lg">Statistiikka</Button>
