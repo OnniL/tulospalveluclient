@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Button,
   ButtonToolbar,
@@ -32,11 +32,16 @@ const Molkky = () => {
   const [validated, setValidated] = useState(false);
   const [newScore, setNewScore] = useState();
   const [disable, setDisable] = useState(true);
+  const scoresEndRef = useRef(null)
 
   const handleScoreChange = (event) => {
     console.log(event.target.value);
     setNewScore(event.target.value);
   };
+
+  const scrollToBottom = () => {
+    scoresEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
 
   const showStartGrid = () => {
     setNameGrid('');
@@ -156,16 +161,14 @@ const Molkky = () => {
   };
 
   const addNewScore = (event) => {
+
     event.preventDefault();
     let score;
     score = newScore;
 
     if (score > 12 || score < 0) {
-      setValidated(true)
-    }else if(score == null || ""){
-      setValidated(true)
-    }
-    else {
+      alert('Anna tulos väliltä 0-12!');
+    } else {
       allScores.push(score)
       updateScore(currentPlayer, score);
       setScoreGrid(rows.map((row) =>
@@ -181,10 +184,21 @@ const Molkky = () => {
         roundCounter++;
         rows.push(roundCounter);
       }
-      setValidated(false);
     }
-    setNewScore('')
+
+    while(playerLost[currentPlayer] === true) {
+      allScores.push('X');
+      setScoreGrid(rows.map((row) =>
+              <Row>
+                {scores.map((score, i) =>
+                    <Col className="grid-item" id={row + "" + i}>{allScores[(row - 1) * players.length + i]}</Col>)}
+              </Row>
+          )
+      );
+      currentPlayer++;
+    }
     setgameInstruction('Anna pelaajan ' + players[currentPlayer] + ' tulos:')
+    scrollToBottom();
   };
 
   const winnerFound = () => {
@@ -261,6 +275,7 @@ const Molkky = () => {
         </Container>
         <Container className="grid-container">
           {scoreGrid}
+          <div ref={scoresEndRef}/>
         </Container>
         <Form noValidate validated={validated} onSubmit={addNewScore}>
           <Col xs="auto">
@@ -273,7 +288,6 @@ const Molkky = () => {
                           placeholder="0-12"
                           required>
             </Form.Control>
-            <Form.Control.Feedback type="invalid">Syötä hyväksyttävä tulos! (0-12)</Form.Control.Feedback>
           </Col>
           <Col xs="auto">
             <Button variant="primary"
@@ -283,8 +297,8 @@ const Molkky = () => {
           </Col>
         </Form>
         <ButtonToolbar>
-          <Button style={{margin: "0.1em"}} size="lg" onClick={saveGame} disabled={disable}>Tallenna</Button>
-          <Button style={{margin: "0.1em"}} size="lg" onClick={endGame}>Lopeta</Button>
+          <Button style={{margin: "0.1em"}} size="me" onClick={saveGame} disabled={disable}>Tallenna</Button>
+          <Button style={{margin: "0.1em"}} size="me" onClick={endGame}>Lopeta</Button>
         </ButtonToolbar>
       </Container>
   );
