@@ -121,7 +121,7 @@ const Players = () => {
               </Form.Control>
             </Col>
             <Col xs="auto">
-              <Button variant="primary" type="submit" size="sm">Lisää</Button>
+              <Button id="addNewPlayerButton" variant="primary" type="submit" size="sm">Lisää</Button>
             </Col>
           </Row>
           <Table striped responsive size="sm" id="playerTable">

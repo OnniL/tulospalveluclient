@@ -163,6 +163,15 @@ td {
     border-width: 0 !important;
 }
 
+#playerTable {
+    max-height: 15em;
+    overflow-y: auto;
+}
+
+#addNewPlayerButton {
+    margin: 0 !important;
+}
+
 a {
     display: inline-block;
     position: relative;
