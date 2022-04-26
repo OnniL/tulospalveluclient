@@ -11,6 +11,10 @@ body {
 
 }
 
+input, select {
+    font-size: 100%;
+}
+
 .modal-footer {
     display: flex;
     flex-wrap: wrap;
