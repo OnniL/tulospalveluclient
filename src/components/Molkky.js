@@ -205,6 +205,7 @@ const Molkky = () => {
     setgameInstruction('Anna pelaajan ' + players[currentPlayer] + ' tulos:')
     scrollToBottom();
     setNewScore("");
+
   };
 
   const winnerFound = () => {
