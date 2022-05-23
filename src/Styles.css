@@ -11,6 +11,10 @@ body {
 
 }
 
+input, select {
+    font-size: 100%;
+}
+
 .modal-footer {
     display: flex;
     flex-wrap: wrap;
@@ -163,6 +167,15 @@ td {
     border-width: 0 !important;
 }
 
+#playerTable {
+    max-height: 15em;
+    overflow-y: auto;
+}
+
+#addNewPlayerButton {
+    margin: 0 !important;
+}
+
 a {
     display: inline-block;
     position: relative;
@@ -227,10 +240,7 @@ h3 {
     text-align: center;
 }
 
-.form-control {
-    min-height: 2.5em;
-    border-radius: 2px;
-}
+
 
 
 #pelaajatOtsikko{
@@ -277,12 +287,15 @@ Form{
     flex-direction: column;
 }
 
+
+
 .form-control {
     border-radius: 1em !important;
     text-align: center;
     font-family: "Courier New";
-    max-width: 15em;
+    max-width: 10em;
     font-size: 0.7em !important;
+    min-height: 2.5em;
 }
 
 #formBasicEmail{

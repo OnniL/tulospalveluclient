@@ -166,9 +166,9 @@ const Molkky = () => {
     let score;
     score = newScore;
 
-    if (score > 12 || score < 0) {
-      alert('Anna tulos väliltä 0-12!');
-    } else {
+    if (score > 12 || score < 0) alert('Anna tulos väliltä 0-12!');
+    else if (score == null || score.isEmpty || score === '') alert('Et syöttänyt tulosta');
+    else {
       allScores.push(score)
       updateScore(currentPlayer, score);
       setScoreGrid(rows.map((row) =>
@@ -196,6 +196,11 @@ const Molkky = () => {
           )
       );
       currentPlayer++;
+      if (currentPlayer === players.length) {
+        currentPlayer = 0;
+        roundCounter++;
+        rows.push(roundCounter);
+      }
     }
     setgameInstruction('Anna pelaajan ' + players[currentPlayer] + ' tulos:')
     scrollToBottom();
@@ -282,7 +287,7 @@ const Molkky = () => {
             <Form.Label style={{fontWeight: "bold"}}>{gameInstruction}</Form.Label>
           </Col>
           <Col xs="auto">
-            <Form.Control type="text"
+            <Form.Control type="tel"
                           value={newScore}
                           onChange={handleScoreChange}
                           placeholder="0-12"

@@ -15,6 +15,10 @@ const NewGame = () => {
   const handleMolkky = () => {
     history.push('/players')
   }
+
+  const handleRistiseiska = () => {
+    history.push('/ristiseiska')
+  }
     /**
      * Checks the current mode and makes changes if necessary
      */
@@ -35,7 +39,7 @@ const NewGame = () => {
         <h1 ref={h1}>Valitse Peli</h1>
         <ButtonGroup Vertical className="buttonGroup">
           <Button size="lg" onClick={handleMolkky}>Mölkky</Button>
-          <Button size="lg">Ristiseiska</Button>
+          <Button size="lg" onClick={handleRistiseiska}>Ristiseiska</Button>
           <Button size="lg" onClick={handleSettings}>Takaisin</Button>
         </ButtonGroup>
       </Container>
