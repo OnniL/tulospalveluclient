@@ -108,7 +108,7 @@ const Statistics = () => {
                   11 +
                   tuloksetJSON.rows[i].p12 * 12) / heitotlkm;
 
-              if (tuloksetJSON.rows[0].pelatutlkm == 0) {
+              if (tuloksetJSON.rows[0].pelatutlkm === 0) {
                 voittoprosentti = 0;
                 osumatarkkuus = 0;
                 pistekeskiarvo = 0;
@@ -159,8 +159,8 @@ const Statistics = () => {
 
   return(
       <Container>
-          <h1>Ryhmän Statistiikka</h1>
-        <Table striped style={{margin: "0 5em", overflow: "auto"}}>
+        <h1>Ryhmän Statistiikka</h1>
+        <Table striped id="StatsTable">
           <thead style={{maxWidth: "25em"}}>
           <tr>
             <th>Nimi:</th>

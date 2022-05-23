@@ -142,7 +142,7 @@ th {
 td {
     text-align: center;
     border-color: black !important;
-    border-width: 1px 1px 0 1px !important;
+    border-width: 1px 1px 0 0 !important;
 }
 
 #playersTRow {
@@ -381,6 +381,12 @@ Form{
     align-items: center;
 }
 
+#StatsTable{
+    margin: 0 5em;
+    overflow: auto;
+    max-height: 25em;
+    border: 2px solid black;
+}
 
 
 
